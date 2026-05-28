@@ -1,0 +1,10 @@
+const router = require('express').Router();
+const { vehicleController: c } = require('../controllers/controllers');
+const { verifyToken } = require('../middleware/auth');
+router.get('/',             verifyToken, c.getAll);
+router.get('/:id',          verifyToken, c.getById);
+router.get('/:id/history',  verifyToken, c.getHistory);
+router.post('/',            verifyToken, c.create);
+router.put('/:id',          verifyToken, c.update);
+router.delete('/:id',       verifyToken, c.remove);
+module.exports = router;
